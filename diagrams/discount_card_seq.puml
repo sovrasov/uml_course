@@ -1,0 +1,13 @@
+@startuml
+
+actor Customer
+actor Cashier
+participant Terminal
+
+Customer -> Cashier : Discount card
+Cashier -> Terminal : onDiscountCard(ID)
+Terminal -> Terminal : processCard(ID)
+Terminal -> Cashier : printCardStatus()
+Cashier -> Customer : Card status
+
+@enduml
