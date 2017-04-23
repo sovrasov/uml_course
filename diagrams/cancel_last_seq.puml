@@ -1,0 +1,15 @@
+@startuml
+
+actor Customer
+actor Cashier
+participant Terminal
+participant currentCheck <<Check>>
+
+Customer -> Cashier : cancel last item
+Cashier -> Terminal : onCancelLast()
+Terminal -> currentCheck : deleteLastItem()
+currentCheck -> Terminal : onCheckUpdated()
+Terminal -> Cashier : display check status
+Cashier -> Customer : success status
+
+@enduml
