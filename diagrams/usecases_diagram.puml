@@ -1,0 +1,44 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+
+actor :Покупатель: as customer
+actor :Кассир: as cashier
+actor :Терминал: as terminal
+
+rectangle {
+usecase buy as "Покупка товаров"
+usecase get_check as "Выдать чек"
+usecase add_to_check as "Пробить товар"
+usecase give_change as "Выдать сдачу"
+usecase show_card as "Предъявить дисконтную\n карту"
+usecase cancel_item as "Отменить последнюю\n позицию в чеке"
+}
+usecase sign_in as "Авторизоваться в терминале"
+usecase sign_out as "Закрыть сессию в терминале"
+usecase submit_cash as "Сдать выручку"
+
+usecase load_data as "Загрузить данные с сервера"
+
+(get_check) <. (buy) : include
+(add_to_check) <. (buy) : include
+(give_change) <. (buy) : include
+(show_card) <. (buy) : include
+(cancel_item) <. (buy) : include
+
+(load_data) <. (sign_in) : include
+
+customer -> (buy)
+customer -> (cancel_item)
+customer -> (show_card)
+
+cashier -> (get_check)
+cashier -> (add_to_check)
+cashier -> (give_change)
+cashier --> (sign_in)
+cashier -> (sign_out)
+cashier -> (submit_cash)
+
+terminal --> (load_data)
+
+@enduml
