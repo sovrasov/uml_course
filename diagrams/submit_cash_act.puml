@@ -1,0 +1,12 @@
+@startuml
+
+start
+if (Terminal.getAmountOfMoney() > 200 000) then (true)
+:Terminal.openMoneyCase();
+:Terminal.waitForCaseClosing();
+:Terminal.resetCashcounter();
+else(false)
+endif
+stop
+
+@enduml

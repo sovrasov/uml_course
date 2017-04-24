@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-for file in ./*
+for file in ./*.puml
 do
+  echo Building $file ...
   plantuml -o ./images $file
 done

@@ -1,0 +1,12 @@
+@startuml
+start
+if (CurrentCheck.isEmpty()) then (true)
+:Terminal.applyCurrentCheck();
+:Terminal.printCurrentCheck();
+:Terminal.showChange();
+:Terminal.openMoneyCase();
+:Terminal.waitForCaseClosing();
+else(false)
+endif
+stop
+@enduml

@@ -1,0 +1,12 @@
+@startuml
+[*] -> NotLoggedIn
+NotLoggedIn --> StartSignIn:card inserted
+state StartSignIn {
+[*] --> LoginAccepted
+[*] -> LoginDeclined
+LoginAccepted --> CaseOpened
+CaseOpened --> CaseClosed
+}
+LoginDeclined -> AutheficationFailed
+CaseClosed -> Ready
+@enduml
