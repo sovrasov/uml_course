@@ -8,9 +8,9 @@ actor :Терминал: as terminal
 
 rectangle {
 usecase buy as "Покупка товаров"
-usecase get_check as "Выдать чек"
+usecase get_check as "Завершить чек"
 usecase add_to_check as "Пробить товар"
-usecase give_change as "Выдать сдачу"
+usecase give_change as "Покупка алкоголя"
 usecase show_card as "Предъявить дисконтную\n карту"
 usecase cancel_item as "Отменить последнюю\n позицию в чеке"
 }
