@@ -1,0 +1,91 @@
+@startuml
+
+left to right direction
+
+package "Server Database" {
+  abstract class IDatabaseManager  {
+    +getSalespersonTable()
+    +getGoodsTable()
+    +getCustomerTable()
+    +updateGoodsTable()
+    +onNewConnection()
+  }
+  class DatabaseManager
+  class Salesperson
+  class Customer
+  class SalespersonsTable
+  class CustomersTable
+  class GoodsTable
+
+  DatabaseManager <|-- IDatabaseManager
+  SalespersonsTable *-- DatabaseManager
+  CustomersTable *-- DatabaseManager
+  GoodsTable *-- DatabaseManager
+  Customer o-- CustomersTable
+  Salesperson o-- SalespersonsTable
+  SaleItem o-- GoodsTable
+}
+
+package "Terminal software" {
+  abstract class ITerminalManager  {
+    +startNewOrder()
+    +deleteLastItemFromOrder()
+    +addItemToOrder()
+    +connectToServer()
+    +disconnectFromServer()
+    +loadDBFromServer()
+  }
+  class TerminalManager
+  class PrintController {
+    +printOrder(Order)
+    +checkStatus()
+  }
+  class DisplayController {
+    +printMessage(string)
+    +printOrder(Order)
+  }
+  class MoneyCase {
+    +open()
+    +close()
+    +getBalance()
+    +resetBalance()
+    +addToBalance(int)
+    +subtractFromBalance(int)
+  }
+  class CardReader  {
+    +readCard()
+  }
+  class BarcodeScanner {
+    +initScanProcess()
+    +getLastScanResult()
+  }
+  class LocalDB  {
+    +importTables()
+    +getCustomerByID(ID)
+    +getSaleItemByID(ID)
+    +applyOrder(Order)
+  }
+  class Order  {
+    +deleteLastItem()
+    +addIttem()
+    +getItemsList()
+  }
+  class ServerInteractor {
+    +createConnection()
+    +loadDB()
+    +uploadStatistics()
+  }
+
+  MoneyCase *-- TerminalManager
+  DisplayController *-- TerminalManager
+  PrintController *-- TerminalManager
+  CardReader *-- TerminalManager
+  BarcodeScanner *-- TerminalManager
+  LocalDB *-- TerminalManager
+  Order *-- TerminalManager
+  TerminalManager <|-- ITerminalManager
+  ITerminalManager o-- ServerInteractor
+  IDatabaseManager o-- ServerInteractor
+}
+
+@enduml

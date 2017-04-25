@@ -7,6 +7,6 @@ state StartSignIn {
 LoginAccepted --> CaseOpened
 CaseOpened --> CaseClosed
 }
-LoginDeclined -> AutheficationFailed
+LoginDeclined -> AuthenticationFailed
 CaseClosed -> Ready
 @enduml
