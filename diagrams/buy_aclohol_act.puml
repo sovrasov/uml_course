@@ -1,0 +1,13 @@
+@startuml
+start
+if (checkIfInAlcoholList()) then (true)
+:waitForCashierResponse();
+if (checkResponse()) then (true)
+:addToCurrentCheck();
+else(false)
+endif
+else(false)
+:addToCurrentCheck();
+endif
+stop
+@enduml

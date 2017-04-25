@@ -1,0 +1,12 @@
+@startuml
+
+actor Cashier
+participant Terminal
+
+Cashier -> Terminal : readIDCard()
+Terminal -> Cashier : card status
+Terminal -> Terminal : sendDataToServer()
+Terminal -> Terminal : terminateUserSession()
+Terminal -> Cashier : display status
+
+@enduml

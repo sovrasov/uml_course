@@ -1,0 +1,13 @@
+@startuml
+
+participant Terminal
+participant Server
+participant Database
+
+Terminal -> Server : initial data response
+Server --> Terminal : server status
+Terminal -> Server : terminal ID
+Server -> Database : terminalDataReq(termID)
+Database --> Terminal : terminalDataPack
+
+@enduml
